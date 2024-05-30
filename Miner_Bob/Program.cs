@@ -1,5 +1,6 @@
 ﻿using System.Threading;
-using System.ComponentModel; //Backgroundworker
+using System.ComponentModel;
+using System.Runtime.CompilerServices; //Backgroundworker
 
 
 
@@ -11,3 +12,27 @@ BackgroundWorker thread = new BackgroundWorker();
 thread.DoWork += keypressThread;
 thread.RunWorkerAsync();
 
+while (true)
+{
+	/*
+	if (!miner.Update())
+	{ break; }
+	*/
+	Console.WriteLine("Hello World!");
+	Thread.Sleep(2000);	
+}
+
+static void keypressThread(object sender, DoWorkEventArgs e)
+{
+	while(true)
+	{
+		if (Console.KeyAvailable)
+		{
+			if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+			{
+				Environment.Exit(0);
+			}
+		}
+		Thread.Sleep(100);
+	}
+}
